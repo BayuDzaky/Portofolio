@@ -60,12 +60,13 @@ a {
   display: none;
   padding: 18px;
 }
-#check{
-  display: none;
-}
 
 .Mobile-menu:hover{
   cursor: pointer;
+}
+
+#check{
+  display: none;
 }
 
 .sidebar{
@@ -74,19 +75,19 @@ a {
   bottom: 0;
   left: -300px;
   width: 300px;
-  background-color: rgba(200, 56, 56, .9);
-  transition: .3s;
-
+  background-color: rgba(195,4,4,.9);
+  transition: 0.3s;
+  z-index: 9999;
 }
 
-.sidebar ul li a {
-  color: #fff;
+.sidebar ul li a{
+  color: white;
 
 }
 
 .sidebar ul li{
   padding: 24px;
-  transition: .3s;
+  transition: 0.3s;
   transition-property: background-color;
 }
 
@@ -94,18 +95,9 @@ a {
   background-color: black;
 }
 
-#check:checked ~ .sidebar{
+#check:checked ~ .sidebar {
   left: 0;
 }
-
-.logo{
-  margin-right: 50px;
-  list-style: none;
-  display: flex;
-  gap: 25px;
-
-}
-
 
 .banner{
   background-color: crimson;
@@ -257,18 +249,11 @@ html{
   scroll-behavior: smooth;
 }
 
-@media(max-width: 600px){
+@media(max-width: 768px){
   .Mobile-menu{
     display: block;
   }
 
-.menu{
-  width: 100%;
-  max-height: 0;
-  overflow: hidden;
-
-
-}
   header ul{
     display: none;
   }
@@ -278,5 +263,4 @@ html{
   .col-{
     width: 100%;
   }
-
 }
