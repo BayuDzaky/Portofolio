@@ -104,8 +104,8 @@
     }
 
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
     }
 
@@ -116,8 +116,10 @@
     }
 
     .gallery img {
-      width: 220px;
-      height: 150px;
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      aspect-ratio: 4/3;
       object-fit: cover;
       border-radius: 12px;
       cursor: pointer;
@@ -218,6 +220,45 @@
     body.dark-mode h2,
     body.dark-mode h3 {
       color: #90caf9;
+    }
+
+    /* responsive design */
+    @media (max-width: 992px) {
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        padding: 20px;
+      }
+      .main {
+        padding: 30px 20px;
+      }
+      h1 {
+        font-size: 28px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .profile-card img {
+        width: 90px;
+        height: 90px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      h2 {
+        font-size: 18px;
+      }
+      h3 {
+        font-size: 16px;
+      }
+      .download-btn-inline {
+        font-size: 11px;
+        padding: 5px 8px;
+      }
     }
   </style>
 </head>
@@ -323,6 +364,7 @@
   </div>
 </section>
 
+
       <div class="back-link">
         <a href="index.html">&larr; Kembali ke Profil</a>
       </div>
@@ -383,4 +425,3 @@
   </script>
 </body>
 </html>
-
