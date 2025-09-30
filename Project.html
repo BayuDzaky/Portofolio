@@ -16,6 +16,7 @@
       font-family: 'Gilroy', sans-serif;
       background: #fff;
       color: #333;
+      transition: background 0.3s, color 0.3s;
     }
 
     .container {
@@ -31,6 +32,7 @@
       justify-content: center;
       align-items: center;
       padding: 40px 20px;
+      transition: background 0.3s;
     }
 
     .profile-card {
@@ -41,6 +43,7 @@
       border-radius: 8px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       text-align: center;
+      transition: background 0.3s, color 0.3s;
     }
 
     .profile-card img {
@@ -68,6 +71,7 @@
       flex: 2;
       padding: 60px 40px;
       overflow-y: auto;
+      transition: background 0.3s, color 0.3s;
     }
 
     h1 {
@@ -178,28 +182,48 @@
       margin-top: 10px;
     }
 
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
+    /* tombol toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #2a6df4;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
 
-      .sidebar, .main {
-        width: 100%;
-        padding: 20px;
-      }
+    .theme-toggle:hover {
+      opacity: 0.9;
+    }
 
-      h1 {
-        font-size: 28px;
-      }
-
-      .gallery img {
-        width: 100%;
-        height: auto;
-      }
+    /* dark mode */
+    body.dark-mode {
+      background: #121212;
+      color: #f0f0f0;
+    }
+    body.dark-mode .sidebar {
+      background: #1e1e1e;
+    }
+    body.dark-mode .profile-card {
+      background: #222;
+      color: #f0f0f0;
+    }
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3 {
+      color: #90caf9;
     }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
   <div class="container">
     <div class="sidebar">
       <div class="profile-card">
@@ -211,116 +235,58 @@
     <div class="main">
       <h1>Proyek Saya</h1>
 
-      <!-- Blender Section (dengan sub-section) -->
-      <section>
-        <h2>Blender</h2>
+<!-- Blender Section (dengan sub-section) -->
+<section>
+  <h2>Blender</h2>
 
-        <h3>3D Produk</h3>
-        <div class="gallery">
-          <div class="gallery-item">
-            <img src="Serum.jpg" alt="3D Produk 1">
-          </div>
-          <div class="gallery-item">
-            <img src="moisturezer.png" alt="3D Produk 2">
-          </div>
-          <div class="gallery-item">
-            <img src="Produk Kopi.png" alt="3D Produk 2">
-          </div>
-          <div class="gallery-item">
-            <img src="Shampo.png" alt="3D Produk 2">
-          </div>
-          <div class="gallery-item">
-            <img src="Toner.png" alt="3D Produk 2">
-          </div>
-          <div class="gallery-item">
-            <img src="Parfum Terbaru.png" alt="3D Produk 2">
-          </div>
-          
-        </div>
+  <h3>3D Produk</h3>
+  <div class="gallery">
+    <div class="gallery-item"><img src="Serum.jpg" alt="3D Produk 1"></div>
+    <div class="gallery-item"><img src="moisturezer.png" alt="3D Produk 2"></div>
+    <div class="gallery-item"><img src="Produk Kopi.png" alt="3D Produk 3"></div>
+    <div class="gallery-item"><img src="Shampo.png" alt="3D Produk 4"></div>
+    <div class="gallery-item"><img src="Toner.png" alt="3D Produk 5"></div>
+    <div class="gallery-item"><img src="Parfum Terbaru.png" alt="3D Produk 6"></div>
+  </div>
 
-        <h3>3D Character</h3>
-        <div class="gallery">
-          <div class="gallery-item">
-            <img src="Pramuka2.png" alt="3D Character 1">
-          </div>
-          <div class="gallery-item">
-            <img src="Superhero Side 2.png" alt="3D Character 2">
-          </div>
-          <div class="gallery-item">
-            <img src="PSikopat 3.png" alt="3D Character 2">
-          </div>
-          <div class="gallery-item">
-            <img src="NaikMotor.png" alt="3D Character 2">
-          </div>
-          <div class="gallery-item">
-            <img src="Ninja 1.png" alt="3D Character 2">
-          </div>
-          <div class="gallery-item">
-            <img src="Astrounut.png" alt="3D Character 2">
-          </div>
-          <div class="gallery-item">
-            <img src="Ninja 6.png" alt="3D Character 2">
-          </div>
-          <div class="gallery-item">
-            <img src="Musang oren.png" alt="3D Character 2">
-          </div>
-          <div class="gallery-item">
-            <img src="WITCH.png" alt="3D Character 2">
-          </div>
-          <div class="gallery-item">
-            <img src="Virus side.png" alt="3D Character 2">
-          </div>
-          <div class="gallery-item">
-            <img src="hiuuu.png" alt="3D Character 2">
-          </div>
-          <div class="gallery-item">
-            <img src="KURA KURA TINJA.png" alt="3D Character 2">
-          </div>
-        </div>
+  <h3>3D Character</h3>
+  <div class="gallery">
+    <div class="gallery-item"><img src="Pramuka2.png" alt="3D Character 1"></div>
+    <div class="gallery-item"><img src="Superhero Side 2.png" alt="3D Character 2"></div>
+    <div class="gallery-item"><img src="PSikopat 3.png" alt="3D Character 3"></div>
+    <div class="gallery-item"><img src="NaikMotor.png" alt="3D Character 4"></div>
+    <div class="gallery-item"><img src="Ninja 1.png" alt="3D Character 5"></div>
+    <div class="gallery-item"><img src="Astrounut.png" alt="3D Character 6"></div>
+    <div class="gallery-item"><img src="Ninja 6.png" alt="3D Character 7"></div>
+    <div class="gallery-item"><img src="Musang oren.png" alt="3D Character 8"></div>
+    <div class="gallery-item"><img src="WITCH.png" alt="3D Character 9"></div>
+    <div class="gallery-item"><img src="Virus side.png" alt="3D Character 10"></div>
+    <div class="gallery-item"><img src="hiuuu.png" alt="3D Character 11"></div>
+    <div class="gallery-item"><img src="KURA KURA TINJA.png" alt="3D Character 12"></div>
+  </div>
 
-        <h3>3D Environment</h3>
-        <div class="gallery">
-          <div class="gallery-item">
-            <img src="OmahHantu.png" alt="3D Environment 1">
-          </div>
-          <div class="gallery-item">
-            <img src="Pertama.png" alt="3D Environment 2">
-          </div>
-          <div class="gallery-item">
-            <img src="PSikopat 3.png" alt="3D Environment 3">
-          </div>
-        </div>
-      </section>
+  <h3>3D Environment</h3>
+  <div class="gallery">
+    <div class="gallery-item"><img src="OmahHantu.png" alt="3D Environment 1"></div>
+    <div class="gallery-item"><img src="Pertama.png" alt="3D Environment 2"></div>
+    <div class="gallery-item"><img src="PSikopat 3.png" alt="3D Environment 3"></div>
+  </div>
+</section>
 
 <!-- Design 2D Section -->
-      <section>
-        <h2>Design 2D</h2>
-        <div class="gallery">
-          <div class="gallery-item">
-            <img src="Ungu.jpg" alt="Design 2D 1">
-            
-          </div>
-          <div class="gallery-item">
-            <img src="Oren.jpg" alt="Design 2D 2">
-            
-          </div>
-          <div class="gallery-item">
-            <img src="Ijo.jpg" alt="Design 2D 2">
-            
-          </div>
-          <div class="gallery-item">
-            <img src="Pink.jpg" alt="Design 2D 2">
-            
-          </div>
-          <div class="gallery-item">
-            <img src="Biru.jpg" alt="Design 2D 2">
-            
-          </div>
-        </div>
-      </section>
+<section>
+  <h2>Design 2D</h2>
+  <div class="gallery">
+    <div class="gallery-item"><img src="Ungu.jpg" alt="Design 2D 1"></div>
+    <div class="gallery-item"><img src="Oren.jpg" alt="Design 2D 2"></div>
+    <div class="gallery-item"><img src="Ijo.jpg" alt="Design 2D 3"></div>
+    <div class="gallery-item"><img src="Pink.jpg" alt="Design 2D 4"></div>
+    <div class="gallery-item"><img src="Biru.jpg" alt="Design 2D 5"></div>
+  </div>
+</section>
 
-      <!-- Game Section -->
-      <section>
+<!-- Game Section -->
+<section>
   <h2>Game</h2>
   <div class="gallery">
     <div class="gallery-item">
@@ -338,8 +304,8 @@
   </div>
 </section>
 
-      <!-- Video Section -->
-      <section>
+<!-- Video Section -->
+<section>
   <h2>Video</h2>
   <div class="gallery">
     <div class="gallery-item">
@@ -357,9 +323,11 @@
   </div>
 </section>
 
-<div class="back-link">
-  <a href="index.html">&larr; Kembali ke Profil</a>
-</div>
+      <div class="back-link">
+        <a href="index.html">&larr; Kembali ke Profil</a>
+      </div>
+    </div>
+  </div>
 
   <div class="lightbox" id="lightbox">
     <img id="lightbox-img" src="" alt="Full View">
@@ -367,6 +335,7 @@
   </div>
 
   <script>
+    // gallery lightbox
     const galleryImages = document.querySelectorAll('.gallery img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -377,13 +346,8 @@
         const src = img.src;
         lightboxImg.src = src;
         lightbox.classList.add('active');
-
-        if (src.includes('game') || src.includes('video')) {
-          downloadLink.href = src;
-          downloadLink.style.display = 'inline-block';
-        } else {
-          downloadLink.style.display = 'none';
-        }
+        downloadLink.href = src;
+        downloadLink.style.display = src.includes('game') || src.includes('video') ? 'inline-block' : 'none';
       });
     });
 
@@ -392,10 +356,31 @@
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        lightbox.classList.remove('active');
-      }
+      if (e.key === 'Escape') lightbox.classList.remove('active');
     });
+
+    // dark mode toggle
+    window.onload = function () {
+      const theme = localStorage.getItem("theme");
+      const btn = document.querySelector('.theme-toggle');
+      if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+        btn.textContent = "☀️ Light Mode";
+      }
+    };
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      const btn = document.querySelector('.theme-toggle');
+      if (document.body.classList.contains('dark-mode')) {
+        btn.textContent = "☀️ Light Mode";
+        localStorage.setItem("theme", "dark");
+      } else {
+        btn.textContent = "🌙 Dark Mode";
+        localStorage.setItem("theme", "light");
+      }
+    }
   </script>
 </body>
 </html>
+

@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
-    /* Hilangkan semua margin & padding default */
     * {
       margin: 0;
       padding: 0;
@@ -20,6 +19,7 @@
       background: #fff;
       color: #333;
       line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
     }
 
     #resume-content {
@@ -33,6 +33,7 @@
       padding: 30px;
       text-align: center;
       page-break-inside: avoid;
+      transition: background 0.3s;
     }
 
     .profile-pic {
@@ -99,6 +100,7 @@
       margin: 5px;
       border-radius: 20px;
       font-size: 14px;
+      transition: background 0.3s, color 0.3s;
     }
 
     .exp-item, .edu-item {
@@ -122,16 +124,63 @@
       color: #777;
       background: #f9f9f9;
       page-break-inside: avoid;
+      transition: background 0.3s, color 0.3s;
     }
 
-    @media (max-width: 768px) {
-      #resume-content {
-        padding: 20px;
-      }
+    /* tombol toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #2a6df4;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+
+    .theme-toggle:hover {
+      opacity: 0.9;
+    }
+
+    /* DARK MODE */
+    body.dark-mode {
+      background: #121212;
+      color: #f0f0f0;
+    }
+
+    body.dark-mode header {
+      background: #1e1e1e;
+    }
+
+    body.dark-mode header p {
+      color: #bbb;
+    }
+
+    body.dark-mode .skills-list li {
+      background: #2a2a2a;
+      color: #f0f0f0;
+    }
+
+    body.dark-mode footer {
+      background: #1e1e1e;
+      color: #bbb;
+    }
+
+    body.dark-mode .exp-item span,
+    body.dark-mode .edu-item span {
+      color: #aaa;
     }
   </style>
 </head>
 <body>
+  <!-- Toggle theme button -->
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
   <div id="resume-content">
     <header>
       <img src="d203c258-ca06-482a-82e3-4427031a7159.png" alt="Profile Photo" class="profile-pic">
@@ -214,28 +263,49 @@
   </div>
 
   <script>
+    // cek tema saat load
+    window.onload = function () {
+      const theme = localStorage.getItem("theme");
+      const btn = document.querySelector('.theme-toggle');
+      if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+        btn.textContent = "☀️ Light Mode";
+      }
+    };
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      const btn = document.querySelector('.theme-toggle');
+      if (document.body.classList.contains('dark-mode')) {
+        btn.textContent = "☀️ Light Mode";
+        localStorage.setItem("theme", "dark");
+      } else {
+        btn.textContent = "🌙 Dark Mode";
+        localStorage.setItem("theme", "light");
+      }
+    }
+
     function downloadPDF() {
-  const element = document.getElementById('resume-content');
-  const opt = {
-    margin: 0,
-    filename: 'Resume_Bayu_Dzaky_Khoiry.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 1 }, // kecilkan skala agar muat
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    pagebreak: { mode: ['avoid'] }
-  };
+      const element = document.getElementById('resume-content');
+      const opt = {
+        margin: 0,
+        filename: 'Resume_Bayu_Dzaky_Khoiry.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 1 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['avoid'] }
+      };
 
-  // Ubah skala tampilan sebelum print agar muat 1 halaman
-  element.style.transform = "scale(0.85)";
-  element.style.transformOrigin = "top left";
-  element.style.width = "1180px";
+      element.style.transform = "scale(0.85)";
+      element.style.transformOrigin = "top left";
+      element.style.width = "1180px";
 
-  html2pdf().from(element).set(opt).save().then(() => {
-    // Balikin ukuran setelah download
-    element.style.transform = "";
-    element.style.width = "";
-  });
-}
+      html2pdf().from(element).set(opt).save().then(() => {
+        element.style.transform = "";
+        element.style.width = "";
+      });
+    }
   </script>
 </body>
 </html>
+
