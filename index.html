@@ -7,11 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Montserrat', sans-serif;
@@ -20,7 +16,6 @@
       transition: background 0.3s, color 0.3s;
     }
 
-    /* tombol toggle */
     .theme-toggle {
       position: fixed;
       top: 20px;
@@ -36,9 +31,7 @@
       transition: background 0.3s;
     }
 
-    .theme-toggle:hover {
-      opacity: 0.9;
-    }
+    .theme-toggle:hover { opacity: 0.9; }
 
     .container {
       display: flex;
@@ -75,47 +68,15 @@
       margin-bottom: 20px;
     }
 
-    .profile-card h2 {
-      font-size: 20px;
-      font-weight: 700;
-    }
+    .profile-card h2 { font-size: 20px; font-weight: 700; }
+    .profile-card h3 { font-size: 14px; font-weight: 400; color: #999; margin-top: 5px; letter-spacing: 1px; }
 
-    .profile-card h3 {
-      font-size: 14px;
-      font-weight: 400;
-      color: #999;
-      margin-top: 5px;
-      letter-spacing: 1px;
-    }
+    .socials { margin-top: 20px; }
+    .socials a { margin: 0 8px; color: #333; font-size: 20px; text-decoration: none; }
 
-    .socials {
-      margin-top: 20px;
-    }
-
-    .socials a {
-      margin: 0 8px;
-      color: #333;
-      font-size: 20px;
-      text-decoration: none;
-    }
-
-    .contact-info {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #555;
-    }
-
-    .contact-info p {
-      margin: 5px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .contact-info i {
-      margin-right: 8px;
-      color: #2a6df4;
-    }
+    .contact-info { margin-top: 15px; font-size: 14px; color: #555; }
+    .contact-info p { margin: 5px 0; display: flex; align-items: center; justify-content: center; }
+    .contact-info i { margin-right: 8px; color: #2a6df4; }
 
     .right {
       flex: 2;
@@ -126,23 +87,10 @@
       transition: color 0.3s;
     }
 
-    .right h1 {
-      font-size: 60px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
+    .right h1 { font-size: 60px; font-weight: 700; margin-bottom: 10px; }
+    .right h2 { font-size: 20px; font-weight: 400; margin-bottom: 30px; color: #555; }
 
-    .right h2 {
-      font-size: 20px;
-      font-weight: 400;
-      margin-bottom: 30px;
-      color: #555;
-    }
-
-    .buttons {
-      margin-bottom: 30px;
-    }
-
+    .buttons { margin-bottom: 30px; }
     .buttons a {
       background: #2a6df4;
       color: white;
@@ -157,14 +105,8 @@
       display: inline-block;
     }
 
-    .buttons a.btn-secondary {
-      background: #eaeaea;
-      color: #333;
-    }
-
-    .buttons a:hover {
-      opacity: 0.9;
-    }
+    .buttons a.btn-secondary { background: #eaeaea; color: #333; }
+    .buttons a:hover { opacity: 0.9; }
 
     .right p {
       font-size: 16px;
@@ -172,95 +114,105 @@
       max-width: 600px;
     }
 
-    /* DARK MODE STYLES */
-    body.dark-mode {
-      background: #121212;
-      color: #f0f0f0;
+    /* ===== HIGHLIGHTED PROJECTS ===== */
+    .highlight-section {
+      margin-top: 50px;
     }
 
-    body.dark-mode .left {
-      background: #1e1e1e;
+    .highlight-section h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #2a6df4;
     }
 
-    body.dark-mode .profile-card {
-      background: #2a2a2a;
-      color: #f0f0f0;
+    .highlight-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
     }
 
-    body.dark-mode .profile-card h3 {
-      color: #bbb;
+    .project-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s, background 0.3s, color 0.3s;
     }
 
-    body.dark-mode .socials a {
-      color: #f0f0f0;
+    .project-card:hover {
+      transform: translateY(-5px);
     }
 
-    body.dark-mode .contact-info {
-      color: #ccc;
+    .project-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
 
-    body.dark-mode .contact-info i {
-      color: #4a90e2;
+    .project-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 5px;
     }
 
-    body.dark-mode .right h2 {
-      color: #bbb;
+    .project-card p {
+      font-size: 13px;
+      color: #555;
     }
 
-    body.dark-mode .buttons a.btn-secondary {
-      background: #333;
-      color: #f0f0f0;
+    .project-card a {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 13px;
+      color: #2a6df4;
+      text-decoration: none;
+      font-weight: 600;
     }
 
-    /* ===== MOBILE STYLES ===== */
+    /* ===== DARK MODE ===== */
+    body.dark-mode { background: #121212; color: #f0f0f0; }
+    body.dark-mode .left { background: #1e1e1e; }
+    body.dark-mode .profile-card { background: #2a2a2a; color: #f0f0f0; }
+    body.dark-mode .profile-card h3 { color: #bbb; }
+    body.dark-mode .socials a { color: #f0f0f0; }
+    body.dark-mode .contact-info { color: #ccc; }
+    body.dark-mode .contact-info i { color: #4a90e2; }
+    body.dark-mode .right h2 { color: #bbb; }
+    body.dark-mode .buttons a.btn-secondary { background: #333; color: #f0f0f0; }
+    body.dark-mode .project-card { background: #2a2a2a; color: #f0f0f0; box-shadow: 0 4px 10px rgba(255,255,255,0.1); }
+    body.dark-mode .project-card p { color: #bbb; }
+    body.dark-mode .project-card a { color: #4a90e2; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .right h1 { font-size: 48px; }
+      .right h2 { font-size: 18px; }
+      .right { padding: 60px 40px; }
+    }
+
     @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
+      .container { flex-direction: column; }
+      .left, .right { flex: none; width: 100%; padding: 40px 20px; }
+      .right h1 { font-size: 36px; text-align: center; }
+      .right h2, .right p { text-align: center; }
+      .buttons { text-align: center; }
+      .buttons a { margin-bottom: 10px; width: 120px; }
+      .highlight-container { grid-template-columns: 1fr 1fr; }
+    }
 
-      .left, .right {
-        flex: none;
-        width: 100%;
-        padding: 40px 20px;
-      }
-
-      .right {
-        padding-top: 20px;
-      }
-
-      .right h1 {
-        font-size: 36px;
-        text-align: center;
-      }
-
-      .right h2 {
-        font-size: 16px;
-        text-align: center;
-      }
-
-      .buttons {
-        text-align: center;
-      }
-
-      .right p {
-        text-align: center;
-        font-size: 14px;
-      }
-
-      .buttons a {
-        margin-bottom: 10px;
-        width: 100px;
-        text-align: center;
-      }
-
-      .profile-card {
-        width: 100%;
-      }
+    @media (max-width: 480px) {
+      .highlight-container { grid-template-columns: 1fr; }
+      .right h1 { font-size: 28px; }
+      .right p { font-size: 14px; }
+      .project-card img { height: 120px; }
     }
   </style>
 </head>
 <body>
-  <!-- Button untuk toggle tema -->
   <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
 
   <div class="container">
@@ -270,18 +222,10 @@
         <h2>Bayu Dzaky Khoiry</h2>
         <h3>ARTIST</h3>
         <div class="socials">
-          <a href="https://www.instagram.com/portofolio02/" target="_blank">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/bayu-dzaky-269036330/" target="_blank">
-            <i class="fa-brands fa-linkedin"></i>
-          </a>
-          <a href="https://www.youtube.com/@bayudzaky9415" target="_blank">
-            <i class="fa-brands fa-youtube"></i>
-          </a>
-          <a href="https://www.artstation.com/kontorufun9" target="_blank">
-            <i class="fa-brands fa-artstation"></i>
-          </a>
+          <a href="https://www.instagram.com/portofolio02/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/bayu-dzaky-269036330/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://www.youtube.com/@bayudzaky9415" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.artstation.com/kontorufun9" target="_blank"><i class="fa-brands fa-artstation"></i></a>
         </div>
         <div class="contact-info">
           <p><i class="fa-solid fa-envelope"></i> bayudzaky822@gmail.com</p>
@@ -289,21 +233,43 @@
         </div>
       </div>
     </div>
+
     <div class="right">
       <h1>Hello World</h1>
       <h2>Here's who I am & what I do</h2>
       <div class="buttons">
-        <a href="resume.html" target="_blank" rel="noopener noreferrer">RESUME</a>
+        <a href="resume.html" target="_blank">RESUME</a>
         <a href="Project.html" class="btn-secondary">PROJECTS</a>
       </div>
-      <p>
-        Hi, my name is Bayu Dzaky, I'm a student from MMTC Yogyakarta university, I'm 21 years old, 
-        I know a little bit of programming language and I'm also a little bit familiar with editing software. 
-        and I've made website, short movies, video games, 3d model lowpoly, and video clips.
-      </p>
-      <p>
-        I’m a great place for you to tell a story and let your users know a little more about you.
-      </p>
+      <p>Hi, my name is Bayu Dzaky, I'm a student from MMTC Yogyakarta university, I'm 21 years old, 
+      I know a little bit of programming language and I'm also a little bit familiar with editing software. 
+      and I've made website, short movies, video games, 3d model lowpoly, and video clips.</p>
+      <p>I’m a great place for you to tell a story and let your users know a little more about you.</p>
+
+      <!-- HIGHLIGHTED PROJECTS -->
+      <div class="highlight-section">
+        <h3>Highlighted Projects</h3>
+        <div class="highlight-container">
+          <div class="project-card">
+            <img src="thumb1.jpg" alt="Project 1">
+            <h4>3D Forest Scene</h4>
+            <p>Low-poly environment built in Blender.</p>
+            <a href="Project.html#blender">View More →</a>
+          </div>
+          <div class="project-card">
+            <img src="thumb2.jpg" alt="Project 2">
+            <h4>Survivor Game</h4>
+            <p>Unity project with crafting and AI system.</p>
+            <a href="Project.html#game">View More →</a>
+          </div>
+          <div class="project-card">
+            <img src="thumb3.jpg" alt="Project 3">
+            <h4>Music Video</h4>
+            <p>Edited and color graded using Premiere Pro.</p>
+            <a href="Project.html#video">View More →</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -311,12 +277,9 @@
     function toggleTheme() {
       document.body.classList.toggle('dark-mode');
       const btn = document.querySelector('.theme-toggle');
-      if (document.body.classList.contains('dark-mode')) {
-        btn.textContent = "☀️ Light Mode";
-      } else {
-        btn.textContent = "🌙 Dark Mode";
-      }
+      btn.textContent = document.body.classList.contains('dark-mode')
+        ? "☀️ Light Mode" : "🌙 Dark Mode";
     }
   </script>
 </body>
-</html> 
+</html>
