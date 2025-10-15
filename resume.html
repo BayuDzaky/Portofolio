@@ -6,7 +6,7 @@
   <title>Resume - Bayu Dzaky Khoiry</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <link rel="icon" href="favicon.ico.ico">
   <style>
     * {
       margin: 0;
@@ -171,8 +171,7 @@
       color: #bbb;
     }
 
-    body.dark-mode .exp-item span,
-    body.dark-mode .edu-item span {
+    body.dark-mode .exp-item span, body.dark-mode .edu-item span {
       color: #aaa;
     }
   </style>
@@ -188,7 +187,6 @@
       <p>3D Artist | Graphic Designer | Video Editor</p>
       <div class="header-buttons">
         <a href="index.html" class="btn"><i class="fa-solid fa-arrow-left"></i> Back to Profile</a>
-        <button class="btn" onclick="downloadPDF()"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
       </div>
     </header>
 
@@ -205,11 +203,23 @@
       <ul class="skills-list">
         <li>3D Modeling</li>
         <li>Texturing</li>
-        <li>Lighting & Rendering</li>
-        <li>Unity Game Engine</li>
         <li>Video Editing</li>
         <li>Graphic Design</li>
         <li>HTML & CSS</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Software</h2>
+      <ul class="skills-list">
+        <li>Blender</li>
+        <li>Adobe Photoshop</li>
+        <li>Unity Game Engine</li>
+        <li>CorelDraw</li>
+        <li>Figma</li>
+        <li>Adobe PremierePro</li>
+        <li>CapCut</li>
+        <li>Adobe Substance 3D</li>
       </ul>
     </section>
 
@@ -218,13 +228,13 @@
       <div class="exp-list">
         <div class="exp-item">
           <h3>Freelance 3D Artist</h3>
-          <span>2022 - Present</span>
-          <p>Created 3D product visualizations, low-poly game assets, and animation projects for various clients.</p>
+          <span>2022 - 2024</span>
+          <p> low-poly game assets, and animation projects for various clients.</p>
         </div>
         <div class="exp-item">
-          <h3>Video Editor & Designer</h3>
-          <span>2020 - 2022</span>
-          <p>Edited short films, promotional videos, and social media content using Adobe Premiere Pro and After Effects.</p>
+          <h3>3D product internship</h3>
+          <span>June - August 2025</span>
+          <p>Creating 3D product mockups and designing product packaging.</p>
         </div>
       </div>
     </section>
@@ -235,7 +245,7 @@
         <div class="edu-item">
           <h3>MMTC Yogyakarta</h3>
           <span>2021 - Present</span>
-          <p>Major in Multimedia and Communication Technology.</p>
+          <p>Major in Multimedia and Communication Technology Yogyakarta.</p>
         </div>
       </div>
     </section>
@@ -284,28 +294,6 @@
         localStorage.setItem("theme", "light");
       }
     }
-
-    function downloadPDF() {
-      const element = document.getElementById('resume-content');
-      const opt = {
-        margin: 0,
-        filename: 'Resume_Bayu_Dzaky_Khoiry.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 1 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        pagebreak: { mode: ['avoid'] }
-      };
-
-      element.style.transform = "scale(0.85)";
-      element.style.transformOrigin = "top left";
-      element.style.width = "1180px";
-
-      html2pdf().from(element).set(opt).save().then(() => {
-        element.style.transform = "";
-        element.style.width = "";
-      });
-    }
   </script>
 </body>
 </html>
-
