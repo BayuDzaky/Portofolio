@@ -32,6 +32,25 @@
       transition: background 0.3s;
     }
 
+    /* ===== MUSIC BUTTON ===== */
+#music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2a6df4;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 1000;
+}
+
+body.dark-mode #music-btn {
+  background: #4a90e2;
+}
+
     .theme-toggle:hover { opacity: 0.9; }
 
     .container {
@@ -216,6 +235,11 @@
 <body>
   <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
 
+  <audio id="bg-music" loop>
+    <source src="old songs but it's lofi remix - Lo-fi Music (128k).mp3" type="audio/mpeg">
+  </audio>
+  <button id="music-btn" onclick="toggleMusic()">🔊 Music</button>
+
   <div class="container">
     <div class="left">
       <div class="profile-card">
@@ -287,6 +311,25 @@
       btn.textContent = document.body.classList.contains('dark-mode')
         ? "☀️ Light Mode" : "🌙 Dark Mode";
     }
+    /* ===== MUSIC SCRIPT ===== */
+  const music = document.getElementById("bg-music");
+  music.volume = 0.2; // volume lembut biar elegan
+
+  // autoplay setelah user klik (anti diblok browser)
+  window.addEventListener("click", () => {
+    music.play().catch(()=>{});
+  }, { once: true });
+
+  function toggleMusic() {
+    const btn = document.getElementById("music-btn");
+    if (music.paused) {
+      music.play();
+      btn.textContent = "🔊 Music";
+    } else {
+      music.pause();
+      btn.textContent = "🔇 Mute";
+    }
+  }
   </script>
 </body>
 </html>

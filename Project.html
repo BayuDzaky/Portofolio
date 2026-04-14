@@ -110,6 +110,25 @@
   gap: 20px;
 }
 
+/* ===== MUSIC BUTTON ===== */
+#music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2a6df4;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 1000;
+}
+
+body.dark-mode #music-btn {
+  background: #4a90e2;
+}
+
 /* Responsive Tablet */
 @media (max-width: 992px) {
   .gallery {
@@ -323,6 +342,11 @@
 <body>
   <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
 
+  <audio id="bg-music" loop>
+    <source src="old songs but it's lofi remix - Lo-fi Music (128k).mp3" type="audio/mpeg">
+  </audio>
+  <button id="music-btn" onclick="toggleMusic()">🔊 Music</button>
+
   <div class="container">
     <div class="sidebar">
       <div class="profile-card">
@@ -388,6 +412,8 @@
     <div class="gallery-item"><img src="Projek2.jpg" alt="Poster 2D 10"></div>
     <div class="gallery-item"><img src="Spiderman2@2x.jpg" alt="Poster 2D 9"></div>
     <div class="gallery-item"><img src="BillieEilish2.jpg" alt="Poster 2D 7"></div>
+    <div class="gallery-item"><img src="Kairi2.jpg" alt="Poster 2D 11"></div>
+    <div class="gallery-item"><img src="VintageTea.jpg" alt="Poster 2D 12"></div>
     <div class="gallery-item"><img src="DjAloy2.jpg" alt="Poster 2D 6"></div>
     <div class="gallery-item"><img src="NameTag.jpg" alt="Poster 2D 8"></div>
     <div class="gallery-item"><img src="Latihan1 (Lionel Messi)@2x2@2x.jpg" alt="Poster 2D 1"></div>
@@ -573,6 +599,25 @@ document.querySelectorAll('section').forEach(section => {
     }
   });
 });
+/* ===== MUSIC SYSTEM ===== */
+const music = document.getElementById("bg-music");
+music.volume = 0.2;
+
+// autoplay setelah user klik (biar ga diblok browser)
+window.addEventListener("click", () => {
+  music.play().catch(()=>{});
+}, { once: true });
+
+function toggleMusic() {
+  const btn = document.getElementById("music-btn");
+  if (music.paused) {
+    music.play();
+    btn.textContent = "🔊 Music";
+  } else {
+    music.pause();
+    btn.textContent = "🔇 Mute";
+  }
+}
   </script>
 </body>
 </html>
