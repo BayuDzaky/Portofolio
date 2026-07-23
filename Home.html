@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Bayu Dzaky</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+/* ==================== ROOT VARIABLES (DARK & LIGHT THEME) ==================== */
+:root {
+    --bg-color: #111111;
+    --bg-secondary: #161616;
+    --card-bg: #1a1a1a;
+    --card-hover: #1f1f1f;
+    --border-color: #222222;
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+    --text-muted: #666666;
+    --accent-color: #2D7FF9;
+    --accent-hover: #1d4ed8;
+    --input-bg: #1f1f1f;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --bg-secondary: #ffffff;
+    --card-bg: #ffffff;
+    --card-hover: #f1f5f9;
+    --border-color: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent-color: #2563eb;
+    --accent-hover: #1d4ed8;
+    --input-bg: #e2e8f0;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body{
+    background: var(--bg-color);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+/* ==================== NAVBAR ==================== */
+nav{
+    height:75px;
+    border-bottom:1px solid var(--border-color);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 40px;
+    position:sticky;
+    top:0;
+    background: var(--bg-color);
+    z-index:100;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color: var(--text-primary);
+    margin-right:20px;
+}
+
+.left{
+    flex: 1;
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.left a{
+    color: var(--text-secondary);
+    text-decoration:none;
+    font-size:16px;
+    font-weight:500;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.left a:hover, .left a.active{
+    color: var(--accent-color);
+}
+
+.nav-center{
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-nav{
+    width:100%;
+    max-width:400px;
+    height:42px;
+    border-radius:30px;
+    background: var(--input-bg);
+    border:none;
+    color: var(--text-primary);
+    padding:0 20px;
+    outline:none;
+    transition: 0.3s;
+}
+
+.search-nav:focus {
+    box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+.right{
+    flex: 1;
+    display:flex;
+    align-items:center;
+    justify-content: flex-end;
+    gap:20px;
+}
+
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background-image: url('PP.jpeg');
+    background-size: cover;
+    background-position: center;
+    cursor:pointer;
+}
+
+/* ==================== USER DROPDOWN & THEME TOGGLE ==================== */
+.profile-container {
+    position: relative;
+    display: inline-block;
+    padding: 10px 0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 300px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s ease;
+    z-index: 200;
+    overflow: hidden;
+}
+
+.profile-container:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-header {
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.dropdown-header .avatar-large {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background-image: url('PP.jpeg');
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 12px;
+    border: 2px solid var(--border-color);
+}
+
+.dropdown-header .user-name {
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--text-primary);
+}
+
+.dropdown-header .user-email {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Tombol Dark / Light Toggle */
+.theme-toggle-container {
+    width: 90%;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--input-bg);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.theme-toggle-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #444;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+.btn-profile-link {
+    width: 90%;
+    background: linear-gradient(90deg, #0056ff, var(--accent-color));
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.btn-profile-link:hover {
+    opacity: 0.9;
+}
+
+/* ==================== HOME PAGE STYLES (SELARAS) ==================== */
+.home{
+    padding:70px 8%;
+    background: var(--bg-color);
+    color: var(--text-primary);
+}
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:60px;
+}
+
+.hero-text{
+    flex:1;
+}
+
+.hero-text h4{
+    color: var(--accent-color);
+    margin-bottom:10px;
+}
+
+.hero-text h1{
+    font-size:56px;
+    margin-bottom:10px;
+    color: var(--text-primary);
+}
+
+.hero-text h3{
+    font-weight:500;
+    margin-bottom:20px;
+    color: var(--text-secondary);
+}
+
+.hero-text p{
+    line-height:1.8;
+    color: var(--text-muted);
+    margin-bottom:30px;
+}
+
+.hero-btn{
+    display:flex;
+    gap:15px;
+}
+
+.hero-btn button{
+    padding:14px 30px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    background: var(--accent-color);
+    color:white;
+    font-weight:600;
+    transition:.3s;
+}
+
+.hero-btn button:hover{
+    background: var(--accent-hover);
+}
+
+.hero-btn .outline{
+    background: transparent;
+    border:2px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+.hero-btn .outline:hover{
+    background: var(--input-bg);
+}
+
+.hero-img{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+.hero-img img{
+    width:360px;
+    border-radius:30px;
+    box-shadow:0 20px 40px var(--shadow-color);
+}
+
+.about{
+    padding:70px 8%;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    text-align:center;
+}
+
+.about h2{
+    margin-bottom:20px;
+    font-size:36px;
+}
+
+.about p{
+    max-width:800px;
+    margin:auto;
+    line-height:1.8;
+    color: var(--text-secondary);
+}
+
+.skills{
+    padding:70px 8%;
+    background: var(--bg-color);
+    color: var(--text-primary);
+}
+
+.skills h2{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:36px;
+}
+
+.skill-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:25px;
+}
+
+.skill{
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding:35px 20px;
+    border-radius:15px;
+    text-align:center;
+    transition:.3s;
+}
+
+.skill:hover{
+    transform:translateY(-8px);
+    background: var(--card-hover);
+    border-color: var(--accent-color);
+}
+
+.skill i{
+    font-size:38px;
+    margin-bottom:15px;
+    color: var(--accent-color);
+}
+
+.skill h3{
+    font-size:16px;
+}
+
+.featured{
+    padding:70px 8%;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.featured h2{
+    text-align:center;
+    font-size:36px;
+    margin-bottom:40px;
+}
+
+.featured-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+.project{
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding:18px;
+    border-radius:15px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition:.3s;
+    cursor:pointer;
+}
+
+.project-img{
+    height:220px;
+    background: var(--input-bg);
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+.project:hover{
+    transform:translateY(-8px);
+    border-color: var(--accent-color);
+}
+
+.project h3{
+    font-size:18px;
+}
+
+/* ==================== EXPLORE PAGE STYLES ==================== */
+.filter {
+    display:flex;
+    gap:15px;
+    padding:30px 40px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.filter::-webkit-scrollbar {
+    height: 5px;
+}
+.filter::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+.filter button{
+    background: var(--card-bg);
+    border-radius:15px;
+    padding:12px 20px;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    font-weight: 600;
+    flex-shrink: 0;
+    transition: 0.2s;
+}
+
+.filter button:hover {
+    background: var(--card-hover);
+}
+
+.filter button.active{
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.container{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap:25px;
+    padding:0 40px 50px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.card{
+    background: var(--card-bg);
+    border-radius:20px;
+    overflow:hidden;
+    transition:.3s;
+    cursor:pointer;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color: var(--accent-color);
+}
+
+.card img{
+    width:100%;
+    height:380px; 
+    object-fit: cover; 
+    display: block;
+}
+
+.info{
+    padding:20px;
+}
+
+.title{
+    font-size:17px;
+    font-weight:600;
+    margin-bottom:6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-primary);
+}
+
+.author{
+    color: var(--text-muted);
+    font-size:14px;
+}
+
+/* ==================== MODAL DETAIL ==================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-wrapper {
+    width: 92%;
+    max-width: 1200px;
+    height: 85vh;
+    background: var(--bg-secondary);
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-secondary);
+}
+
+.modal-header-info h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.modal-header-info p {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.close-btn {
+    background: var(--input-bg);
+    border: none;
+    color: var(--text-primary);
+    font-size: 24px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+.close-btn:hover {
+    background: var(--card-hover);
+}
+
+.modal-body-horizontal {
+    flex: 1;
+    display: flex;
+    gap: 25px;
+    padding: 25px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+}
+
+.modal-item {
+    flex: 0 0 auto;
+    height: 100%;
+    scroll-snap-align: start;
+    border-radius: 12px;
+    overflow: hidden;
+    width: auto;    
+    display: flex;
+    align-items: center;
+}
+
+.modal-item img {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain; 
+    border-radius: 12px;
+    background: #000;
+}
+
+.modal-item.description-box {
+    width: 380px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    white-space: normal;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color: var(--text-muted);
+    border-top:1px solid var(--border-color);
+    background: var(--bg-color);
+}
+
+/* RESPONSIVE DESIGN */
+@media(max-width:900px){
+    nav { padding: 0 20px; height: 70px; }
+    .logo { font-size: 20px; }
+    .left { gap: 18px; }
+    .nav-center { display:none; }
+    
+    .hero { flex-direction:column; text-align:center; }
+    .hero-text h1 { font-size:42px; }
+    .hero-btn { justify-content:center; }
+    .skill-grid { grid-template-columns:repeat(2,1fr); }
+    .featured-grid { grid-template-columns:1fr; }
+    .hero-img img { width:280px; }
+    
+    .container { padding: 0 20px 40px; gap: 20px; }
+    .filter { padding: 20px; }
+    .modal-wrapper { height: 80vh; }
+    .modal-body-horizontal { gap: 15px; padding: 15px; }
+    .modal-item { width: 80%; }
+    .modal-item.description-box { width: 80%; }
+}
+
+@media(max-width:600px){
+    nav { padding: 0 15px; }
+    .left a { font-size: 14px; }
+    .dropdown-menu { width: 280px; right: -10px; }
+    .skill-grid { grid-template-columns:1fr; }
+    
+    .container { grid-template-columns: 1fr; padding: 0 15px 30px; }
+    .card img { height: 320px; }
+    .modal-wrapper { width: 95%; height: 85vh; border-radius: 16px; }
+    .modal-header { padding: 15px 20px; }
+    .modal-header-info h2 { font-size: 18px; }
+    .close-btn { width: 38px; height: 38px; font-size: 20px; }
+    
+    .modal-body-horizontal {
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-snap-type: y mandatory;
+    }
+    
+    .modal-item {
+        width: 100% !important;
+        height: auto;
+        flex: 0 0 auto;
+        margin-bottom: 15px;
+    }
+    
+    .modal-item img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+    }
+    
+    .modal-item.description-box {
+        width: 100% !important;
+        padding: 20px;
+        gap: 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="left">
+        <div class="logo">PortfolioHub</div>
+        <a class="nav-link active" onclick="showPage('home', this)">Home</a>
+        <a class="nav-link" onclick="showPage('explore', this)">Explore</a>
+    </div>
+
+    <!-- Search Input Pas di Tengah -->
+    <div class="nav-center">
+        <input class="search-nav" id="searchInput" type="text" placeholder="Search Portfolio..." style="display:none;">
+    </div>
+
+    <div class="right">
+        <div class="profile-container">
+            <div class="avatar"></div>
+            <div class="dropdown-menu">
+                <div class="dropdown-header">
+                    <div class="avatar-large"></div>
+                    <div class="user-name">Bayu Dzaky</div>
+                    <div class="user-email">funnymine165@gmail.com</div>
+                    
+                    <!-- Tombol Toggle Dark / Light -->
+                    <div class="theme-toggle-container">
+                        <span class="theme-toggle-label" id="themeLabel">
+                            <i class="fa-solid fa-moon"></i> Dark Mode
+                        </span>
+                        <label class="theme-switch">
+                            <input type="checkbox" id="themeToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- Button Go To Profile -->
+                    <a href="resume.html" class="btn-profile-link">Go to my profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- HOME PAGE -->
+<section id="homePage">
+    <section class="home">
+        <div class="hero">
+            <div class="hero-text">
+                <h4>Hello, I'm</h4>
+                <h1>Bayu Dzaky</h1>
+                <h3>Graphic Designer • Video Editor • Game Developer</h3>
+                <p>
+                    Saya adalah seorang Graphic Designer, Video Editor, dan Game Developer
+                    yang berfokus pada pembuatan desain visual, editing video, UI, serta
+                    pengembangan game menggunakan Unity.
+                </p>
+                <div class="hero-btn">
+                    <button onclick="document.querySelectorAll('.nav-link')[1].click()">My Portfolio</button>
+                    <button class="outline" onclick="alert('Email: funnymine165@gmail.com')">Contact Me</button>
+                </div>
+            </div>
+            <div class="hero-img">
+                <img src="PP.jpeg" alt="Bayu Dzaky" onerror="this.src='https://i.pravatar.cc/450?img=12'">
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <h2>About Me</h2>
+        <p>
+            Saya memiliki pengalaman di bidang Graphic Design,
+            Video Editing, HTML CSS JavaScript, Unity Game Development,
+            3D Modeling, serta Motion Graphic.
+            Saya senang membuat desain yang modern,
+            interaktif, dan mudah digunakan.
+        </p>
+    </section>
+
+    <section class="skills">
+        <h2>My Skills</h2>
+        <div class="skill-grid">
+            <div class="skill">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h3>Graphic Design</h3>
+            </div>
+            <div class="skill">
+                <i class="fa-solid fa-video"></i>
+                <h3>Video Editing</h3>
+            </div>
+            <div class="skill">
+                <i class="fa-solid fa-gamepad"></i>
+                <h3>Game Development</h3>
+            </div>
+            <div class="skill">
+                <i class="fa-solid fa-cube"></i>
+                <h3>3D Modeling</h3>
+            </div>
+            <div class="skill">
+                <i class="fa-solid fa-code"></i>
+                <h3>HTML CSS JS</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured">
+        <h2>Featured Topics</h2>
+        <div class="featured-grid">
+            <div class="project" onclick="navigateToCategory('Graphic Design')">
+                <div class="project-img" style="background: url('Slide 1.png') center/cover;"></div>
+                <h3>Graphic Design</h3>
+            </div>
+            <div class="project" onclick="navigateToCategory('3D Art')">
+                <div class="project-img" style="background: url('Ninja.png') center/cover;"></div>
+                <h3>3D Art & Modeling</h3>
+            </div>
+            <div class="project" onclick="navigateToCategory('UI/UX')">
+                <div class="project-img" style="background: url('TapaTap1.png') center/cover;"></div>
+                <h3>UI/UX & Mobile</h3>
+            </div>
+        </div>
+    </section>
+</section>
+
+<!-- EXPLORE PAGE -->
+<section id="explorePage" style="display:none;">
+    <div class="filter" id="filterContainer">
+        <button class="active" data-category="For You">For You</button>
+        <button data-category="Graphic Design">Graphic Design</button>
+        <button data-category="Vidio">Video</button>
+        <button data-category="UI/UX">UI/UX</button>
+        <button data-category="Game">Game</button>
+        <button data-category="2D Art">2D Art</button>
+        <button data-category="3D Art">3D Art</button>
+    </div>
+
+    <div class="container" id="gallery"></div>
+</section>
+
+<!-- MODAL DETAIL -->
+<div class="modal-overlay" id="projectModal">
+    <div class="modal-wrapper">
+        <div class="modal-header">
+            <div class="modal-header-info">
+                <h2 id="modalTitle">Project Title</h2>
+                <p id="modalAuthor">by Author Name</p>
+            </div>
+            <button class="close-btn" id="closeModal">&times;</button>
+        </div>
+        <div class="modal-body-horizontal" id="modalBody"></div>
+    </div>
+</div>
+
+<footer>
+©2026 PortfolioHub • Bayu Dzaky
+</footer>
+
+<script>
+// SWITCH NAVIGATION
+function showPage(page, el){
+    document.getElementById("homePage").style.display = "none";
+    document.getElementById("explorePage").style.display = "none";
+    
+    const searchNav = document.getElementById("searchInput");
+
+    if(page === "home"){
+        document.getElementById("homePage").style.display = "block";
+        searchNav.style.display = "none";
+    } else {
+        document.getElementById("explorePage").style.display = "block";
+        searchNav.style.display = "block";
+    }
+
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.classList.remove("active");
+    });
+
+    if(el) el.classList.add("active");
+}
+
+function navigateToCategory(catName) {
+    showPage('explore', document.querySelectorAll('.nav-link')[1]);
+    const btn = document.querySelector(`.filter button[data-category="${catName}"]`);
+    if(btn) btn.click();
+}
+
+// TOGGLE DARK / LIGHT THEME
+const themeToggle = document.getElementById("themeToggle");
+const themeLabel = document.getElementById("themeLabel");
+
+themeToggle.addEventListener("change", () => {
+    if (themeToggle.checked) {
+        document.documentElement.setAttribute("data-theme", "light");
+        themeLabel.innerHTML = `<i class="fa-solid fa-sun"></i> Light Mode`;
+    } else {
+        document.documentElement.removeAttribute("data-theme");
+        themeLabel.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Mode`;
+    }
+});
+
+// DATA PROJECTS
+const projects=[
+{
+    id: 0,
+    title:"Social Media Campaign Design",
+    author:"Social Media • Branding • School",
+    category: "Graphic Design",
+    image:"Slide 1.png",
+    gallery: [
+        "slide 2.png",
+        "slide 3.png",
+        "slide 4.png",
+        "slide 5.png",
+        "slide 6.png",
+        "slide 7.png"
+    ],
+    desc: "A portfolio showcasing promotional content for schools, events, and businesses. Each design focuses on clear communication, strong visual hierarchy, and engaging layouts tailored to the target audience."
+},
+{
+    id: 1,
+    title:"2D Char Cartoon",
+    author:"2D",
+    category: "2D Art",
+    image:"2D 4.jpg",
+    gallery: [
+        "2D 5.jpg",
+        "2D 3.jpg",
+        "2D 1.jpg",
+        "2D 2.jpg"
+    ],
+    desc: "Desain landing page modern dengan nuansa hijau alami yang menenangkan hati konsumen."
+},
+{
+    id: 2,
+    title:"KingsFisher Project",
+    author:"Social Media • Branding • Banner",
+    category: "Graphic Design",
+    image:"KingFisher.png",
+    gallery: [
+        "xBanner.jpg",
+        "Rak.jpg"
+    ],
+    desc: "Sebuah konsep visual identity untuk brand kopi lokal yang mengedepankan estetika minimalis."
+},
+{
+    id: 3,
+    title:"Parenting Awareness Campaign",
+    author:"Social Media • Educational Campaign",
+    category: "Graphic Design",
+    image:"Anak Pertama.png",
+    gallery: [
+        "Anak 1.png",
+        "Anak 2.png",
+        "Anak 3.png",
+        "Anak 4.png"
+    ],
+    desc: "A social media campaign designed to educate parents about digital parenting. The carousel focuses on delivering informative content through engaging visuals, clear typography, and a friendly, easy to understand layout."
+},
+{
+    id: 4,
+    title:"UI Mobile App",
+    author:"Kevin",
+    category: "UI/UX",
+    image:"TapaTap1.png",
+    gallery: [
+        "TapaTap2.png",
+        "TapaTap3.png",
+        "TapaTap4.png",
+        "TapaTap5.png"
+    ],
+    desc: "Eksplorasi desain UI/UX mobile apps untuk pelacak keuangan pribadi digital."
+},
+{
+    id: 5,
+    title:"Kids Fashion Brand Campaign",
+    author:"Social Media • Branding",
+    category: "Graphic Design",
+    image:"AnakMuslim 1.png",
+    gallery: [
+        "AnakMuslim 2.png",
+        "AnakMuslim 3.png",
+        "AnakMuslim 4.png",
+        "AnakMuslim 5.png",
+        "AnakMuslim 6.png",
+        "AnakMuslim 7.png"
+    ],
+    desc: "A collaborative branding campaign featuring KABI and OviKids. The designs introduce the partnership, highlight product collections, and communicate the shared values of comfort, quality, and style for children's Muslim fashion."
+},
+{
+    id: 6,
+    title:"Children's Bicycle Promotion",
+    author:"Social Media • Branding",
+    category: "Graphic Design",
+    image:"BannerSepeda 1.png",
+    gallery: [
+        "BannerSepeda 2.JPG"
+    ],
+    desc: "A collaborative branding campaign featuring KABI and OviKids. The designs introduce the partnership, highlight product collections, and communicate the shared values of comfort, quality, and style for children's Muslim fashion."
+},
+{
+    id: 7,
+    title:"3D Character",
+    author:"3D Char",
+    category: "3D Art",
+    image:"Ninja.png",
+    gallery: [
+        "Psikopat.png",
+        "Superhero.png",
+        "Rubah.png",
+        "Penyihir.png",
+        "ShadowMan.jpg"
+    ],
+    desc: "A collection of stylized 3D characters created using a low-poly workflow. Each character features unique silhouettes, expressive proportions, and simple color palettes, making them suitable for games, animations, and interactive digital experiences."
+},
+{
+    id: 8,
+    title:"3D Hard Surface",
+    author:"3D",
+    category: "3D Art",
+    image:"Mobil.png",
+    gallery: [
+        "Motor.png",
+        "RumahHantu.png",
+        "RumahLaut.png"
+    ],
+    desc: "A collection of stylized hard surface models featuring vehicles designed for game environments. The project focuses on clean topology, simplified forms, and optimized geometry while maintaining a visually appealing and game-ready style."
+},
+{
+    id: 9,
+    title:"3D Produk Dummy",
+    author:"3D",
+    category: "3D Art",
+    image:"Kopi.png",
+    gallery: [
+        "Moist.png",
+        "Serum.png",
+        "Toner.png",
+        "Vaseline2.jpg"
+    ],
+    desc: "A series of product renders featuring beverages, skincare, and cosmetic packaging. The project emphasizes realistic materials, lighting, and presentation to enhance product appeal for commercial and promotional purposes."
+},
+{
+    id: 10,
+    title:"3D Produk DRW SkinCare",
+    author:"Packaging Design • 3D Product Visualization",
+    category: "3D Art",
+    image:"Fiber2.png",
+    gallery: [
+        "Fiberi3.png",
+        "Goat.png",
+        "MasWill.jpg",
+        "MatteTexture.jpg",
+        "Opsi1.png"
+    ],
+    desc: "During my internship at DRW Skincare, I designed product packaging and created high-quality 3D product visualizations for skincare and health products. The project focused on developing visually appealing packaging, realistic materials, and marketing-ready renders to support branding and promotional campaigns."
+},
+{
+    id: 11,
+    title:"Dummy Project",
+    author:"Graphic Design",
+    category: "Graphic Design",
+    image:"Dummy Projek.png",
+    gallery: [
+        "BillieEilish2.jpg",
+        "DjAloy2.jpg",
+        "MoneyLaundry.jpg",
+        "Spiderman.jpg",
+        "Projek2.jpg",
+        "KairiClear.jpg"
+    ],
+    desc: "A series of product renders featuring beverages, skincare, and cosmetic packaging. The project emphasizes realistic materials, lighting, and presentation to enhance product appeal for commercial and promotional purposes."
+}
+];
+
+const galleryContainer=document.getElementById("gallery");
+const searchInput = document.getElementById("searchInput");
+let currentCategory = "For You";
+
+function shuffleArray(array) {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+}
+
+function filterAndRenderProjects() {
+    const searchQuery = searchInput.value.toLowerCase().trim();
+
+    let filtered = projects.filter(project => {
+        return project.title.toLowerCase().includes(searchQuery) || 
+               project.author.toLowerCase().includes(searchQuery);
+    });
+
+    if (currentCategory === "For You") {
+        filtered = shuffleArray(filtered);
+    } else {
+        filtered = filtered.filter(project => project.category === currentCategory);
+    }
+
+    renderProjects(filtered);
+}
+
+function renderProjects(projectsToRender) {
+    galleryContainer.innerHTML = "";
+    
+    if(projectsToRender.length === 0) {
+        galleryContainer.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">Tidak ada hasil portfolio yang cocok ditemukan.</div>`;
+        return;
+    }
+
+    projectsToRender.forEach(project=>{
+        galleryContainer.innerHTML+=`
+        <div class="card" onclick="openProject(${project.id})">
+            <img src="${project.image}" onerror="this.src='https://via.placeholder.com/300x380?text=Image+Not+Found'">
+            <div class="info">
+                <div class="title">${project.title}</div>
+                <div class="author">${project.author}</div>
+            </div>
+        </div>
+        `;
+    });
+}
+
+filterAndRenderProjects();
+
+searchInput.addEventListener("input", filterAndRenderProjects);
+
+const filterButtons=document.querySelectorAll(".filter button");
+filterButtons.forEach(btn=>{
+    btn.onclick=()=>{
+        filterButtons.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+
+        currentCategory = btn.getAttribute("data-category");
+        filterAndRenderProjects();
+    }
+});
+
+const modal = document.getElementById("projectModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalAuthor = document.getElementById("modalAuthor");
+const modalBody = document.getElementById("modalBody");
+const closeModal = document.getElementById("closeModal");
+
+function openProject(id) {
+    const project = projects.find(p => p.id === id);
+    if (!project) return;
+
+    modalTitle.innerText = project.title;
+    modalAuthor.innerText = `Theme : ${project.author}`;
+    
+    let bodyContent = `
+        <div class="modal-item">
+            <img src="${project.image}" alt="Main Image" onerror="this.src='https://via.placeholder.com/600x800?text=Image+Not+Found'">
+        </div>
+    `;
+
+    if(project.gallery && project.gallery.length > 0) {
+        project.gallery.forEach(imgUrl => {
+            bodyContent += `
+                <div class="modal-item">
+                    <img src="${imgUrl}" alt="Gallery Image" onerror="this.src='https://via.placeholder.com/600x800?text=Image+Not+Found'">
+                </div>
+            `;
+        });
+    }
+
+    bodyContent += `
+        <div class="modal-item description-box">
+            <div>
+                <h3 style="margin-bottom: 15px; color: var(--accent-color);">About Project</h3>
+                <p style="line-height: 1.6; color: var(--text-secondary);">${project.desc}</p>
+            </div>
+            <div style="color: var(--text-muted); font-size: 13px;">
+                Published via PortfolioHub • 2026
+            </div>
+        </div>
+    `;
+
+    modalBody.innerHTML = bodyContent;
+    modal.classList.add("active");
+    
+    modalBody.scrollLeft = 0;
+    modalBody.scrollTop = 0;
+}
+
+closeModal.onclick = () => {
+    modal.classList.remove("active");
+};
+
+window.onclick = (e) => {
+    if (e.target === modal) {
+        modal.classList.remove("active");
+    }
+};
+</script>
+</body>
+</html>
