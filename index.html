@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
-/* ==================== ROOT VARIABLES (DARK & LIGHT THEME) ==================== */
+/* ==================== ROOT VARIABLES ==================== */
 :root {
     --bg-color: #111111;
     --bg-secondary: #161616;
@@ -38,115 +38,129 @@
     --shadow-color: rgba(0, 0, 0, 0.08);
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-body{
+body {
     background: var(--bg-color);
     color: var(--text-primary);
     overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ==================== NAVBAR ==================== */
-nav{
-    height:75px;
-    border-bottom:1px solid var(--border-color);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 40px;
-    position:sticky;
-    top:0;
-    background: var(--bg-color);
-    z-index:100;
-}
-
-.logo{
-    font-size:24px;
-    font-weight:bold;
-    color: var(--text-primary);
-    margin-right:20px;
-}
-
-.left{
-    flex: 1;
-    display:flex;
-    align-items:center;
-    gap:30px;
-}
-
-.left a{
-    color: var(--text-secondary);
-    text-decoration:none;
-    font-size:16px;
-    font-weight:500;
-    transition:.3s;
-    cursor:pointer;
-}
-
-.left a:hover, .left a.active{
-    color: var(--accent-color);
-}
-
-.nav-center{
-    flex: 2;
+nav {
+    min-height: 70px;
+    border-bottom: 1px solid var(--border-color);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px clamp(15px, 4vw, 40px);
+    position: sticky;
+    top: 0;
+    background: var(--bg-color);
+    z-index: 100;
+}
+
+.logo {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: bold;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: clamp(15px, 2vw, 30px);
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
     align-items: center;
 }
 
-.search-nav{
-    width:100%;
-    max-width:400px;
-    height:42px;
-    border-radius:30px;
+.left a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.left a:hover, .left a.active {
+    color: var(--accent-color);
+}
+
+.nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.search-nav {
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    border-radius: 30px;
     background: var(--input-bg);
-    border:none;
+    border: none;
     color: var(--text-primary);
-    padding:0 20px;
-    outline:none;
-    transition: 0.3s;
+    padding: 0 20px;
+    outline: none;
 }
 
 .search-nav:focus {
     box-shadow: 0 0 0 2px var(--accent-color);
 }
 
-.right{
-    flex: 1;
-    display:flex;
-    align-items:center;
-    justify-content: flex-end;
-    gap:20px;
+.right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.avatar{
-    width:40px;
-    height:40px;
-    border-radius:50%;
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     background-image: url('PP.jpeg');
     background-size: cover;
     background-position: center;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-/* ==================== USER DROPDOWN & THEME TOGGLE ==================== */
+/* USER DROPDOWN */
 .profile-container {
     position: relative;
     display: inline-block;
-    padding: 10px 0;
 }
 
 .dropdown-menu {
     position: absolute;
-    top: 55px;
+    top: 50px;
     right: 0;
-    width: 300px;
+    width: min(300px, 90vw);
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: 16px;
@@ -158,17 +172,17 @@ nav{
     transform: translateY(10px);
     transition: all 0.25s ease;
     z-index: 200;
-    overflow: hidden;
 }
 
-.profile-container:hover .dropdown-menu {
+.profile-container:hover .dropdown-menu,
+.profile-container:focus-within .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
 .dropdown-header {
-    padding: 22px 18px;
+    padding: 20px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -176,32 +190,32 @@ nav{
 }
 
 .dropdown-header .avatar-large {
-    width: 75px;
-    height: 75px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     background-image: url('PP.jpeg');
     background-size: cover;
     background-position: center;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     border: 2px solid var(--border-color);
 }
 
 .dropdown-header .user-name {
     font-weight: 600;
-    font-size: 17px;
+    font-size: 16px;
     color: var(--text-primary);
 }
 
 .dropdown-header .user-email {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-secondary);
-    margin-top: 4px;
+    margin-top: 2px;
+    word-break: break-all;
 }
 
-/* Tombol Dark / Light Toggle */
 .theme-toggle-container {
-    width: 90%;
-    margin-top: 16px;
+    width: 100%;
+    margin-top: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -223,15 +237,11 @@ nav{
 .theme-switch {
     position: relative;
     display: inline-block;
-    width: 44px;
-    height: 22px;
+    width: 40px;
+    height: 20px;
 }
 
-.theme-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
+.theme-switch input { opacity: 0; width: 0; height: 0; }
 
 .slider {
     position: absolute;
@@ -245,8 +255,8 @@ nav{
 .slider:before {
     position: absolute;
     content: "";
-    height: 16px;
-    width: 16px;
+    height: 14px;
+    width: 14px;
     left: 3px;
     bottom: 3px;
     background-color: white;
@@ -254,321 +264,267 @@ nav{
     border-radius: 50%;
 }
 
-input:checked + .slider {
-    background-color: var(--accent-color);
-}
-
-input:checked + .slider:before {
-    transform: translateX(22px);
-}
+input:checked + .slider { background-color: var(--accent-color); }
+input:checked + .slider:before { transform: translateX(20px); }
 
 .btn-profile-link {
-    width: 90%;
+    width: 100%;
     background: linear-gradient(90deg, #0056ff, var(--accent-color));
     color: white;
     border: none;
     border-radius: 20px;
     padding: 10px 0;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
     margin-top: 12px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    transition: opacity 0.2s;
 }
 
-.btn-profile-link:hover {
-    opacity: 0.9;
+/* ==================== SECTIONS GENERAL ==================== */
+section {
+    width: 100%;
 }
 
-/* ==================== HOME PAGE STYLES (SELARAS) ==================== */
-.home{
-    padding:70px 8%;
-    background: var(--bg-color);
-    color: var(--text-primary);
+.home-section {
+    padding: clamp(30px, 6vw, 70px) clamp(15px, 6vw, 8%);
 }
 
-.hero{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:60px;
+/* HERO */
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
 }
 
-.hero-text{
-    flex:1;
+.hero-text {
+    flex: 1 1 300px;
 }
 
-.hero-text h4{
+.hero-text h4 {
     color: var(--accent-color);
-    margin-bottom:10px;
+    margin-bottom: 8px;
+    font-size: clamp(14px, 2vw, 18px);
 }
 
-.hero-text h1{
-    font-size:56px;
-    margin-bottom:10px;
-    color: var(--text-primary);
+.hero-text h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    margin-bottom: 10px;
+    line-height: 1.1;
 }
 
-.hero-text h3{
-    font-weight:500;
-    margin-bottom:20px;
+.hero-text h3 {
+    font-weight: 500;
+    margin-bottom: 20px;
     color: var(--text-secondary);
+    font-size: clamp(16px, 2.5vw, 22px);
 }
 
-.hero-text p{
-    line-height:1.8;
+.hero-text p {
+    line-height: 1.7;
     color: var(--text-muted);
-    margin-bottom:30px;
+    margin-bottom: 30px;
+    font-size: clamp(14px, 1.5vw, 16px);
 }
 
-.hero-btn{
-    display:flex;
-    gap:15px;
+.hero-btn {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-.hero-btn button{
-    padding:14px 30px;
-    border:none;
-    border-radius:30px;
-    cursor:pointer;
+.hero-btn button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
     background: var(--accent-color);
-    color:white;
-    font-weight:600;
-    transition:.3s;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
 }
 
-.hero-btn button:hover{
-    background: var(--accent-hover);
-}
-
-.hero-btn .outline{
+.hero-btn .outline {
     background: transparent;
-    border:2px solid var(--accent-color);
+    border: 2px solid var(--accent-color);
     color: var(--accent-color);
 }
 
-.hero-btn .outline:hover{
-    background: var(--input-bg);
+.hero-img {
+    flex: 1 1 280px;
+    display: flex;
+    justify-content: center;
 }
 
-.hero-img{
-    flex:1;
-    display:flex;
-    justify-content:center;
+.hero-img img {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px var(--shadow-color);
+    object-fit: cover;
 }
 
-.hero-img img{
-    width:360px;
-    border-radius:30px;
-    box-shadow:0 20px 40px var(--shadow-color);
-}
-
-.about{
-    padding:70px 8%;
+/* ABOUT */
+.about {
     background: var(--bg-secondary);
-    color: var(--text-primary);
-    text-align:center;
+    text-align: center;
 }
 
-.about h2{
-    margin-bottom:20px;
-    font-size:36px;
+.about h2, .skills h2, .featured h2 {
+    margin-bottom: 20px;
+    font-size: clamp(24px, 4vw, 36px);
 }
 
-.about p{
-    max-width:800px;
-    margin:auto;
-    line-height:1.8;
+.about p {
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.8;
     color: var(--text-secondary);
+    font-size: clamp(14px, 1.5vw, 16px);
 }
 
-.skills{
-    padding:70px 8%;
-    background: var(--bg-color);
-    color: var(--text-primary);
+/* SKILLS */
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
 }
 
-.skills h2{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:36px;
-}
-
-.skill-grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:25px;
-}
-
-.skill{
+.skill {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding:35px 20px;
-    border-radius:15px;
-    text-align:center;
-    transition:.3s;
+    padding: 25px 15px;
+    border-radius: 15px;
+    text-align: center;
 }
 
-.skill:hover{
-    transform:translateY(-8px);
-    background: var(--card-hover);
+.skill:hover {
+    transform: translateY(-5px);
     border-color: var(--accent-color);
 }
 
-.skill i{
-    font-size:38px;
-    margin-bottom:15px;
+.skill i {
+    font-size: 32px;
+    margin-bottom: 12px;
     color: var(--accent-color);
 }
 
-.skill h3{
-    font-size:16px;
+.skill h3 {
+    font-size: 15px;
 }
 
-.featured{
-    padding:70px 8%;
+/* FEATURED */
+.featured {
     background: var(--bg-secondary);
-    color: var(--text-primary);
 }
 
-.featured h2{
-    text-align:center;
-    font-size:36px;
-    margin-bottom:40px;
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
 }
 
-.featured-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:30px;
-}
-
-.project{
+.project {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding:18px;
-    border-radius:15px;
-    box-shadow: 0 4px 15px var(--shadow-color);
-    transition:.3s;
-    cursor:pointer;
+    padding: 16px;
+    border-radius: 15px;
+    cursor: pointer;
 }
 
-.project-img{
-    height:220px;
-    background: var(--input-bg);
-    border-radius:12px;
-    margin-bottom:15px;
-}
-
-.project:hover{
-    transform:translateY(-8px);
+.project:hover {
+    transform: translateY(-5px);
     border-color: var(--accent-color);
 }
 
-.project h3{
-    font-size:18px;
+.project-img {
+    height: 200px;
+    background: var(--input-bg);
+    border-radius: 12px;
+    margin-bottom: 15px;
 }
 
-/* ==================== EXPLORE PAGE STYLES ==================== */
+.project h3 {
+    font-size: 16px;
+}
+
+/* ==================== EXPLORE PAGE ==================== */
 .filter {
-    display:flex;
-    gap:15px;
-    padding:30px 40px;
+    display: flex;
+    gap: 12px;
+    padding: 20px clamp(15px, 4vw, 40px);
     overflow-x: auto;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
 }
 
-.filter::-webkit-scrollbar {
-    height: 5px;
-}
-.filter::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 10px;
-}
+.filter::-webkit-scrollbar { height: 4px; }
+.filter::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
 
-.filter button{
+.filter button {
     background: var(--card-bg);
-    border-radius:15px;
-    padding:12px 20px;
+    border-radius: 15px;
+    padding: 10px 18px;
     color: var(--text-primary);
     border: 1px solid var(--border-color);
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 14px;
     flex-shrink: 0;
-    transition: 0.2s;
 }
 
-.filter button:hover {
-    background: var(--card-hover);
-}
-
-.filter button.active{
+.filter button.active {
     background: var(--accent-color);
     color: white;
     border-color: var(--accent-color);
 }
 
-.container{
-    display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap:25px;
-    padding:0 40px 50px;
-    max-width: 1440px;
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 clamp(15px, 4vw, 40px) 50px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
-.card{
+.card {
     background: var(--card-bg);
-    border-radius:20px;
-    overflow:hidden;
-    transition:.3s;
-    cursor:pointer;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border-color);
 }
 
-.card:hover{
-    transform:translateY(-6px);
+.card:hover {
+    transform: translateY(-5px);
     border-color: var(--accent-color);
 }
 
-.card img{
-    width:100%;
-    height:380px; 
+.card img {
+    width: 100%;
+    height: 280px; 
     object-fit: cover; 
-    display: block;
 }
 
-.info{
-    padding:20px;
-}
+.info { padding: 15px; }
+.title { font-size: 16px; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.author { color: var(--text-muted); font-size: 13px; }
 
-.title{
-    font-size:17px;
-    font-weight:600;
-    margin-bottom:6px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--text-primary);
-}
-
-.author{
-    color: var(--text-muted);
-    font-size:14px;
-}
-
-/* ==================== MODAL DETAIL ==================== */
+/* ==================== MODAL ==================== */
 .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.8);
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(8px);
     z-index: 1000;
     display: flex;
@@ -577,6 +533,7 @@ input:checked + .slider:before {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    padding: 15px;
 }
 
 .modal-overlay.active {
@@ -585,168 +542,130 @@ input:checked + .slider:before {
 }
 
 .modal-wrapper {
-    width: 92%;
-    max-width: 1200px;
-    height: 85vh;
+    width: 100%;
+    max-width: 1100px;
+    max-height: 90vh;
     background: var(--bg-secondary);
-    border-radius: 24px;
+    border-radius: 20px;
     border: 1px solid var(--border-color);
-    overflow: hidden;
-    position: relative;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .modal-header {
-    padding: 20px 30px;
+    padding: 15px 20px;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--bg-secondary);
 }
 
-.modal-header-info h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.modal-header-info p {
-    color: var(--text-muted);
-    font-size: 13px;
-    margin-top: 4px;
-}
+.modal-header-info h2 { font-size: clamp(16px, 2vw, 20px); }
+.modal-header-info p { color: var(--text-muted); font-size: 12px; margin-top: 2px; }
 
 .close-btn {
     background: var(--input-bg);
     border: none;
     color: var(--text-primary);
-    font-size: 24px;
-    width: 45px;
-    height: 45px;
+    font-size: 20px;
+    width: 36px; height: 36px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.2s;
     flex-shrink: 0;
-}
-
-.close-btn:hover {
-    background: var(--card-hover);
 }
 
 .modal-body-horizontal {
     flex: 1;
     display: flex;
-    gap: 25px;
-    padding: 25px;
+    gap: 20px;
+    padding: 20px;
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory;
 }
 
 .modal-item {
     flex: 0 0 auto;
     height: 100%;
-    scroll-snap-align: start;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    width: auto;    
     display: flex;
     align-items: center;
 }
 
 .modal-item img {
     height: 100%;
+    max-height: 60vh;
     width: auto;
-    max-width: 100%;
-    object-fit: contain; 
-    border-radius: 12px;
+    object-fit: contain;
+    border-radius: 10px;
     background: #000;
 }
 
 .modal-item.description-box {
-    width: 380px;
+    width: min(350px, 80vw);
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 25px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    white-space: normal;
+    overflow-y: auto;
 }
 
-footer{
-    text-align:center;
-    padding:30px;
+footer {
+    text-align: center;
+    padding: 20px;
     color: var(--text-muted);
-    border-top:1px solid var(--border-color);
-    background: var(--bg-color);
+    border-top: 1px solid var(--border-color);
+    font-size: 13px;
+    margin-top: auto;
 }
 
-/* RESPONSIVE DESIGN */
-@media(max-width:900px){
-    nav { padding: 0 20px; height: 70px; }
-    .logo { font-size: 20px; }
-    .left { gap: 18px; }
-    .nav-center { display:none; }
+/* ==================== MEDIA QUERIES (RESPONSIVE DESIGN) ==================== */
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
     
-    .hero { flex-direction:column; text-align:center; }
-    .hero-text h1 { font-size:42px; }
-    .hero-btn { justify-content:center; }
-    .skill-grid { grid-template-columns:repeat(2,1fr); }
-    .featured-grid { grid-template-columns:1fr; }
-    .hero-img img { width:280px; }
-    
-    .container { padding: 0 20px 40px; gap: 20px; }
-    .filter { padding: 20px; }
-    .modal-wrapper { height: 80vh; }
-    .modal-body-horizontal { gap: 15px; padding: 15px; }
-    .modal-item { width: 80%; }
-    .modal-item.description-box { width: 80%; }
-}
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-color);
+        flex-direction: column;
+        padding: 20px;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 10px 10px var(--shadow-color);
+    }
 
-@media(max-width:600px){
-    nav { padding: 0 15px; }
-    .left a { font-size: 14px; }
-    .dropdown-menu { width: 280px; right: -10px; }
-    .skill-grid { grid-template-columns:1fr; }
-    
-    .container { grid-template-columns: 1fr; padding: 0 15px 30px; }
-    .card img { height: 320px; }
-    .modal-wrapper { width: 95%; height: 85vh; border-radius: 16px; }
-    .modal-header { padding: 15px 20px; }
-    .modal-header-info h2 { font-size: 18px; }
-    .close-btn { width: 38px; height: 38px; font-size: 20px; }
-    
+    .nav-links.show { display: flex; }
+
+    .hero { text-align: center; }
+    .hero-btn { justify-content: center; }
+
     .modal-body-horizontal {
         flex-direction: column;
         overflow-y: auto;
         overflow-x: hidden;
-        scroll-snap-type: y mandatory;
     }
-    
+
     .modal-item {
-        width: 100% !important;
+        width: 100%;
         height: auto;
-        flex: 0 0 auto;
-        margin-bottom: 15px;
     }
-    
+
     .modal-item img {
         width: 100%;
         height: auto;
-        max-height: 400px;
-        object-fit: cover;
+        max-height: 350px;
     }
-    
+
     .modal-item.description-box {
-        width: 100% !important;
-        padding: 20px;
-        gap: 20px;
+        width: 100%;
     }
 }
 </style>
@@ -755,18 +674,20 @@ footer{
 
 <nav>
     <div class="left">
+        <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
         <div class="logo">PortfolioHub</div>
-        <a class="nav-link active" onclick="showPage('home', this)">Home</a>
-        <a class="nav-link" onclick="showPage('explore', this)">Explore</a>
+        <div class="nav-links" id="navLinks">
+            <a class="nav-link active" onclick="showPage('home', this)">Home</a>
+            <a class="nav-link" onclick="showPage('explore', this)">Explore</a>
+        </div>
     </div>
 
-    <!-- Search Input Pas di Tengah -->
     <div class="nav-center">
         <input class="search-nav" id="searchInput" type="text" placeholder="Search Portfolio..." style="display:none;">
     </div>
 
     <div class="right">
-        <div class="profile-container">
+        <div class="profile-container" tabindex="0">
             <div class="avatar"></div>
             <div class="dropdown-menu">
                 <div class="dropdown-header">
@@ -774,7 +695,6 @@ footer{
                     <div class="user-name">Bayu Dzaky</div>
                     <div class="user-email">funnymine165@gmail.com</div>
                     
-                    <!-- Tombol Toggle Dark / Light -->
                     <div class="theme-toggle-container">
                         <span class="theme-toggle-label" id="themeLabel">
                             <i class="fa-solid fa-moon"></i> Dark Mode
@@ -785,7 +705,6 @@ footer{
                         </label>
                     </div>
 
-                    <!-- Button Go To Profile -->
                     <a href="resume.html" class="btn-profile-link">Go to my profile</a>
                 </div>
             </div>
@@ -794,30 +713,28 @@ footer{
 </nav>
 
 <!-- HOME PAGE -->
-<section id="homePage">
-    <section class="home">
-        <div class="hero">
-            <div class="hero-text">
-                <h4>Hello, I'm</h4>
-                <h1>Bayu Dzaky</h1>
-                <h3>Graphic Designer • Video Editor • Game Developer</h3>
-                <p>
-                    Saya adalah seorang Graphic Designer, Video Editor, dan Game Developer
-                    yang berfokus pada pembuatan desain visual, editing video, UI, serta
-                    pengembangan game menggunakan Unity.
-                </p>
-                <div class="hero-btn">
-                    <button onclick="document.querySelectorAll('.nav-link')[1].click()">My Portfolio</button>
-                    <button class="outline" onclick="alert('Email: funnymine165@gmail.com')">Contact Me</button>
-                </div>
+<div id="homePage">
+    <section class="home-section hero">
+        <div class="hero-text">
+            <h4>Hello, I'm</h4>
+            <h1>Bayu Dzaky</h1>
+            <h3>Graphic Designer • Video Editor • Game Developer</h3>
+            <p>
+                Saya adalah seorang Graphic Designer, Video Editor, dan Game Developer
+                yang berfokus pada pembuatan desain visual, editing video, UI, serta
+                pengembangan game menggunakan Unity.
+            </p>
+            <div class="hero-btn">
+                <button onclick="document.querySelectorAll('.nav-link')[1].click()">My Portfolio</button>
+                <button class="outline" onclick="alert('Email: funnymine165@gmail.com')">Contact Me</button>
             </div>
-            <div class="hero-img">
-                <img src="PP.jpeg" alt="Bayu Dzaky" onerror="this.src='https://i.pravatar.cc/450?img=12'">
-            </div>
+        </div>
+        <div class="hero-img">
+            <img src="PP.jpeg" alt="Bayu Dzaky" onerror="this.src='https://i.pravatar.cc/450?img=12'">
         </div>
     </section>
 
-    <section class="about">
+    <section class="home-section about">
         <h2>About Me</h2>
         <p>
             Saya memiliki pengalaman di bidang Graphic Design,
@@ -828,7 +745,7 @@ footer{
         </p>
     </section>
 
-    <section class="skills">
+    <section class="home-section skills">
         <h2>My Skills</h2>
         <div class="skill-grid">
             <div class="skill">
@@ -841,7 +758,7 @@ footer{
             </div>
             <div class="skill">
                 <i class="fa-solid fa-gamepad"></i>
-                <h3>Game Development</h3>
+                <h3>Game Dev</h3>
             </div>
             <div class="skill">
                 <i class="fa-solid fa-cube"></i>
@@ -854,7 +771,7 @@ footer{
         </div>
     </section>
 
-    <section class="featured">
+    <section class="home-section featured">
         <h2>Featured Topics</h2>
         <div class="featured-grid">
             <div class="project" onclick="navigateToCategory('Graphic Design')">
@@ -871,10 +788,10 @@ footer{
             </div>
         </div>
     </section>
-</section>
+</div>
 
 <!-- EXPLORE PAGE -->
-<section id="explorePage" style="display:none;">
+<div id="explorePage" style="display:none;">
     <div class="filter" id="filterContainer">
         <button class="active" data-category="For You">For You</button>
         <button data-category="Graphic Design">Graphic Design</button>
@@ -886,7 +803,7 @@ footer{
     </div>
 
     <div class="container" id="gallery"></div>
-</section>
+</div>
 
 <!-- MODAL DETAIL -->
 <div class="modal-overlay" id="projectModal">
@@ -907,6 +824,14 @@ footer{
 </footer>
 
 <script>
+// MOBILE NAVIGATION MENU TOGGLE
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+});
+
 // SWITCH NAVIGATION
 function showPage(page, el){
     document.getElementById("homePage").style.display = "none";
@@ -927,6 +852,7 @@ function showPage(page, el){
     });
 
     if(el) el.classList.add("active");
+    navLinks.classList.remove("show");
 }
 
 function navigateToCategory(catName) {
@@ -957,14 +883,7 @@ const projects=[
     author:"Social Media • Branding • School",
     category: "Graphic Design",
     image:"Slide 1.png",
-    gallery: [
-        "slide 2.png",
-        "slide 3.png",
-        "slide 4.png",
-        "slide 5.png",
-        "slide 6.png",
-        "slide 7.png"
-    ],
+    gallery: ["slide 2.png", "slide 3.png", "slide 4.png", "slide 5.png", "slide 6.png", "slide 7.png"],
     desc: "A portfolio showcasing promotional content for schools, events, and businesses. Each design focuses on clear communication, strong visual hierarchy, and engaging layouts tailored to the target audience."
 },
 {
@@ -973,14 +892,7 @@ const projects=[
     author:"2D",
     category: "2D Art",
     image:"Desain2dHigh.png",
-    gallery: [
-        "2D 1.jpg",
-        "2D 2.jpg",
-        "2D 3.jpg",
-        "2D 4.jpg",
-        "2D 5.jpg",
-        "2D 6.png"
-    ],
+    gallery: ["2D 1.jpg", "2D 2.jpg", "2D 3.jpg", "2D 4.jpg", "2D 5.jpg", "2D 6.png"],
     desc: "Desain landing page modern dengan nuansa hijau alami yang menenangkan hati konsumen."
 },
 {
@@ -989,10 +901,7 @@ const projects=[
     author:"Social Media • Branding • Banner",
     category: "Graphic Design",
     image:"KingFisher.png",
-    gallery: [
-        "xBanner.jpg",
-        "Rak.jpg"
-    ],
+    gallery: ["xBanner.jpg", "Rak.jpg"],
     desc: "Sebuah konsep visual identity untuk brand kopi lokal yang mengedepankan estetika minimalis."
 },
 {
@@ -1001,13 +910,8 @@ const projects=[
     author:"Social Media • Educational Campaign",
     category: "Graphic Design",
     image:"Anak Pertama.png",
-    gallery: [
-        "Anak 1.png",
-        "Anak 2.png",
-        "Anak 3.png",
-        "Anak 4.png"
-    ],
-    desc: "A social media campaign designed to educate parents about digital parenting. The carousel focuses on delivering informative content through engaging visuals, clear typography, and a friendly, easy to understand layout."
+    gallery: ["Anak 1.png", "Anak 2.png", "Anak 3.png", "Anak 4.png"],
+    desc: "A social media campaign designed to educate parents about digital parenting."
 },
 {
     id: 4,
@@ -1015,12 +919,7 @@ const projects=[
     author:"Kevin",
     category: "UI/UX",
     image:"TapaTap1.png",
-    gallery: [
-        "TapaTap2.png",
-        "TapaTap3.png",
-        "TapaTap4.png",
-        "TapaTap5.png"
-    ],
+    gallery: ["TapaTap2.png", "TapaTap3.png", "TapaTap4.png", "TapaTap5.png"],
     desc: "Eksplorasi desain UI/UX mobile apps untuk pelacak keuangan pribadi digital."
 },
 {
@@ -1029,15 +928,8 @@ const projects=[
     author:"Social Media • Branding",
     category: "Graphic Design",
     image:"AnakMuslim 1.png",
-    gallery: [
-        "AnakMuslim 2.png",
-        "AnakMuslim 3.png",
-        "AnakMuslim 4.png",
-        "AnakMuslim 5.png",
-        "AnakMuslim 6.png",
-        "AnakMuslim 7.png"
-    ],
-    desc: "A collaborative branding campaign featuring KABI and OviKids. The designs introduce the partnership, highlight product collections, and communicate the shared values of comfort, quality, and style for children's Muslim fashion."
+    gallery: ["AnakMuslim 2.png", "AnakMuslim 3.png", "AnakMuslim 4.png", "AnakMuslim 5.png", "AnakMuslim 6.png", "AnakMuslim 7.png"],
+    desc: "A collaborative branding campaign featuring KABI and OviKids."
 },
 {
     id: 6,
@@ -1045,10 +937,8 @@ const projects=[
     author:"Social Media • Branding",
     category: "Graphic Design",
     image:"BannerSepeda 1.png",
-    gallery: [
-        "BannerSepeda 2.jpg"
-    ],
-    desc: "A collaborative branding campaign featuring KABI and OviKids. The designs introduce the partnership, highlight product collections, and communicate the shared values of comfort, quality, and style for children's Muslim fashion."
+    gallery: ["BannerSepeda 2.jpg"],
+    desc: "A collaborative branding campaign featuring KABI and OviKids."
 },
 {
     id: 7,
@@ -1056,16 +946,8 @@ const projects=[
     author:"3D Char",
     category: "3D Art",
     image:"3DKarakterHighlek.jpg",
-    gallery: [
-        "Psikopat.png",
-        "Superhero.png",
-        "Rubah.png",
-        "Penyihir.png",
-        "ShadowMan.jpg",
-        "Ninja 1.png",
-        "Ninja 2.png"
-    ],
-    desc: "A collection of stylized 3D characters created using a low-poly workflow. Each character features unique silhouettes, expressive proportions, and simple color palettes, making them suitable for games, animations, and interactive digital experiences."
+    gallery: ["Psikopat.png", "Superhero.png", "Rubah.png", "Penyihir.png", "ShadowMan.jpg", "Ninja 1.png", "Ninja 2.png"],
+    desc: "A collection of stylized 3D characters created using a low-poly workflow."
 },
 {
     id: 8,
@@ -1073,12 +955,8 @@ const projects=[
     author:"3D",
     category: "3D Art",
     image:"3d Envi.jpg",
-    gallery: [
-        "Motor.png",
-        "RumahHantu.png",
-        "RumahLaut.png"
-    ],
-    desc: "A collection of stylized hard surface models featuring vehicles designed for game environments. The project focuses on clean topology, simplified forms, and optimized geometry while maintaining a visually appealing and game-ready style."
+    gallery: ["Motor.png", "RumahHantu.png", "RumahLaut.png"],
+    desc: "A collection of stylized hard surface models featuring vehicles designed for game environments."
 },
 {
     id: 9,
@@ -1086,13 +964,8 @@ const projects=[
     author:"3D",
     category: "3D Art",
     image:"Highlight3DProduk.jpg",
-    gallery: [
-        "Moist.png",
-        "Serum.png",
-        "Toner.png",
-        "Vaseline2.jpg"
-    ],
-    desc: "A series of product renders featuring beverages, skincare, and cosmetic packaging. The project emphasizes realistic materials, lighting, and presentation to enhance product appeal for commercial and promotional purposes."
+    gallery: ["Moist.png", "Serum.png", "Toner.png", "Vaseline2.jpg"],
+    desc: "A series of product renders featuring beverages, skincare, and cosmetic packaging."
 },
 {
     id: 10,
@@ -1100,18 +973,8 @@ const projects=[
     author:"Packaging Design • 3D Product Visualization",
     category: "3D Art",
     image:"3DDrwSkincare.jpg",
-    gallery: [
-        "Fiber2.png",
-        "Goat.png",
-        "MasWill.jpg",
-        "MatteTexture.jpg",
-        "Opsi1.png",
-        "Fix.png",
-        "AMOURPACK.png",
-        "SoapSulfur.png"
-        
-    ],
-    desc: "During my internship at DRW Skincare, I designed product packaging and created high-quality 3D product visualizations for skincare and health products. The project focused on developing visually appealing packaging, realistic materials, and marketing-ready renders to support branding and promotional campaigns."
+    gallery: ["Fiber2.png", "Goat.png", "MasWill.jpg", "MatteTexture.jpg", "Opsi1.png", "Fix.png", "AMOURPACK.png", "SoapSulfur.png"],
+    desc: "During my internship at DRW Skincare, I designed product packaging and created high-quality 3D product visualizations."
 },
 {
     id: 11,
@@ -1119,15 +982,8 @@ const projects=[
     author:"Graphic Design",
     category: "Graphic Design",
     image:"Dummy Projek.png",
-    gallery: [
-        "BillieEilish2.jpg",
-        "DjAloy2.jpg",
-        "MoneyLaundry.jpg",
-        "Spiderman.jpg",
-        "Projek2.jpg",
-        "KairiClear.jpg"
-    ],
-    desc: "A series of product renders featuring beverages, skincare, and cosmetic packaging. The project emphasizes realistic materials, lighting, and presentation to enhance product appeal for commercial and promotional purposes."
+    gallery: ["BillieEilish2.jpg", "DjAloy2.jpg", "MoneyLaundry.jpg", "Spiderman.jpg", "Projek2.jpg", "KairiClear.jpg"],
+    desc: "A series of product renders featuring beverages, skincare, and cosmetic packaging."
 }
 ];
 
@@ -1232,7 +1088,7 @@ function openProject(id) {
                 <h3 style="margin-bottom: 15px; color: var(--accent-color);">About Project</h3>
                 <p style="line-height: 1.6; color: var(--text-secondary);">${project.desc}</p>
             </div>
-            <div style="color: var(--text-muted); font-size: 13px;">
+            <div style="color: var(--text-muted); font-size: 13px; margin-top: 15px;">
                 Published via PortfolioHub • 2026
             </div>
         </div>
